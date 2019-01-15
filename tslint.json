@@ -1,0 +1,18 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rules": {
+    "no-implicit-dependencies": false,
+    "object-literal-sort-keys": false,
+    "interface-name": false,
+    "curly": [true, "ignore-same-line"],
+    "variable-name": [true, "allow-leading-underscore", "allow-pascal-case"],
+    "no-shadowed-variable": false,
+    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
+    "no-var-requires": false,
+    "no-console": false,
+    "member-ordering": false,
+    "no-object-literal-type-assertion": false,
+    "radix": false,
+    "no-submodule-imports": false
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "react-graph-db-editor",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "parcel ./example/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsphweid/react-graph-db-editor.git"
+  },
+  "author": "Joseph Weidinger",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jsphweid/react-graph-db-editor/issues"
+  },
+  "homepage": "https://github.com/jsphweid/react-graph-db-editor#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.12",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-tagsinput": "^3.19.3",
+    "jest": "^23.6.0",
+    "lerna": "^3.10.5",
+    "nodemon": "^1.18.9",
+    "parcel-bundler": "^1.11.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "ts-jest": "^23.10.5",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.7.0",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2",
+    "typescript-tooling": "^4.1.0"
+  },
+  "dependencies": {
+    "mob": "0.0.9",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
+    "react-graph-vis": "^1.0.2",
+    "react-tagsinput": "^3.19.0"
+  },
+  "peerDependencies": {
+    "react": "^16.x.x"
+  }
+}

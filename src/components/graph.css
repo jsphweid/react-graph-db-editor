@@ -1,0 +1,7 @@
+.tagEditor-graph {
+  width: calc(100vw - 300px - 44px);
+  border: 1px solid var(--main-border-color);
+  border-radius: 4px;
+  float: left;
+  height: calc(100vh - 16px);
+}

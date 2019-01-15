@@ -1,0 +1,79 @@
+.nodeEditor-nodeEditor table tbody tr td:first-child {
+  width: unset;
+}
+
+.nodeEditor-nodeEditor table tbody tr td:last-child {
+  width: 100%;
+}
+
+.nodeEditor-nodeEditor {
+  position: relative;
+}
+
+.nodeEditor-nodeEditor button {
+  padding: 8px;
+  margin: 8px 8px 0 0;
+  font-size: 16px;
+}
+
+.nodeEditor-nodeEditor-buttons {
+  position: absolute;
+  right: 0;
+}
+
+.nodeEditor-nodeEditor input {
+  color: var(--light-text-color);
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 10px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--main-border-color);
+}
+
+.react-tagsinput {
+  background-color: var(--main-bg-color);
+  border: 1px solid var(--main-border-color);
+  overflow: hidden;
+  padding-left: 5px;
+  padding-top: 5px;
+}
+
+.nodeEditor-nodeEditor input:focus,
+.react-tagsinput--focused {
+  border-color: var(--main-highlight-border-color);
+}
+
+.react-tagsinput-tag {
+  background-color: var(--secondary-bg-color);
+  border-radius: 2px;
+  border: 1px solid var(--main-highlight-border-color);
+  color: var(--secondary-text-color);
+  display: inline-block;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.react-tagsinput-remove {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.react-tagsinput-tag a::before {
+  content: ' ×';
+}
+
+.nodeEditor-nodeEditor .react-tagsinput-input {
+  background: transparent;
+  border: 0;
+  width: 200px;
+  margin-bottom: 6px;
+  margin-top: 1px;
+  padding: 5px;
+}

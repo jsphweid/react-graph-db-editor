@@ -1,0 +1,19 @@
+:root {
+  --main-bg-color: #fff;
+  --secondary-bg-color: #cde69c;
+
+  --main-border-color: #ccc;
+  --main-highlight-border-color: #a5d24a;
+
+  --primary-text-color: #222;
+  --secondary-text-color: #638421;
+  --light-text-color: #777;
+}
+
+@import './components/node-editor.css';
+@import './components/sidebar.css';
+@import './components/graph.css';
+
+button:disabled {
+  color: var(--light-text-color);
+}
