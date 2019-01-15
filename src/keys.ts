@@ -6,7 +6,13 @@ export function initKeyListeners(keyCallbackMap: {
   const keysToListenFor = Object.keys(keyCallbackMap)
   keysToListenFor.forEach(key => (keyState[key] = false))
 
-  document.addEventListener('keydown', ({ key }) => {
+  document.addEventListener('keydown', (e: any) => {
+    if (!e.target || e.target.tagName !== 'BODY') {
+      return
+    }
+
+    const { key } = e
+
     if (keyState[key] === undefined) {
       return
     }

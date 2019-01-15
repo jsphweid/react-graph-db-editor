@@ -36,7 +36,6 @@ export default class SelectionStore {
   public clearActiveElement = (): void => {
     this._activeNodeId = null
     this._activeEdgeId = null
-    getStores().visjsInterface.deselectAll()
   }
 }
 

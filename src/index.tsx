@@ -9,6 +9,7 @@ import { setActionHandlers } from './actions'
 import Sidebar from './components/sidebar'
 import { initKeyListeners } from './keys'
 import { NodeWithConnections } from './types/inputs'
+import * as visjsControl from './visjs-control'
 
 export interface ActionHandlers {
   addEdge: () => Promise<Partial<Edge> | null>
@@ -29,21 +30,18 @@ const App = observer(
     }
 
     public componentDidMount() {
-      const { visjsInterface, graph, selection } = getStores()
+      const { graph } = getStores()
       const { initialState, actionHandlers } = this.props
 
       graph.initData(initialState)
       setActionHandlers(actionHandlers)
 
       initKeyListeners({
-        e: () => visjsInterface.toggleEditConnection(),
-        c: () => visjsInterface.toggleCreateConnection(),
-        Escape: () => {
-          visjsInterface.selectNode()
-          visjsInterface.disableEditMode()
-        },
-        Delete: () => selection.clearActiveElement(),
-        Backspace: () => selection.clearActiveElement()
+        e: () => visjsControl.toggleEditConnection(),
+        c: () => visjsControl.toggleCreateEdge(),
+        Escape: () => visjsControl.cancelEverything()
+        // Delete: () => something.delete(),
+        // Backspace: () => something.delete()
       })
     }
 

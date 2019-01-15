@@ -1,19 +1,16 @@
 import { observable } from 'mobx'
 import GraphStore from './graph'
 import SelectionStore from './selection'
-import VisjsInterface from './visjs-interface'
 
 let stores = initialize()
 
 function initialize() {
   const graph = new GraphStore()
-  const visjsInterface = new VisjsInterface()
   const selection = new SelectionStore()
 
   return observable({
     graph,
-    selection,
-    visjsInterface
+    selection
   })
 }
 
