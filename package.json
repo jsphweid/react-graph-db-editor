@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "parcel ./example/index.html"
+    "start": "parcel ./example/index.html",
+    "build": "rm -rf dist && tsc"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import { Node, VisjsGraph } from '../src/types'
+import { VisjsGraph } from '../src/types'
 import { NodeWithConnections } from '../src/types/inputs'
 
 export const stateAsGraph: VisjsGraph = {
