@@ -5,26 +5,29 @@ import { timeoutPromise } from '../src/utils'
 export const actionHandlers: ActionHandlers = {
   addEdge: async edge => {
     await timeoutPromise(500)
+    // add to your databaes
+
     return edge
   },
   addNode: async () => {
     await timeoutPromise(500)
-    return {}
+
+    return { aliases: [], id: 5 }
   },
-  updateNode: async () => {
+  updateNode: async (id, updates) => {
     await timeoutPromise(500)
     return {}
   },
-  deleteNode: async () => {
-    await timeoutPromise(500)
-    return true
-  },
-  deleteEdge: async () => {
-    await timeoutPromise(500)
-    return true
-  },
-  updateEdge: async (_, updates) => {
+  updateEdge: async (id, updates) => {
     await timeoutPromise(500)
     return updates
+  },
+  deleteNode: async id => {
+    await timeoutPromise(500)
+    return true
+  },
+  deleteEdge: async id => {
+    await timeoutPromise(500)
+    return true
   }
 }

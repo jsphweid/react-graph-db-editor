@@ -13,7 +13,7 @@ import * as visjsControl from './visjs-control'
 
 export interface ActionHandlers {
   addEdge: (edge: Edge) => Promise<Edge | null>
-  addNode: () => Promise<Partial<Node> | null>
+  addNode: <T = {}>() => Promise<(T & Partial<Node>) | null>
   updateNode: (id: ID, updates: Partial<Node>) => Promise<Partial<Node> | null>
   updateEdge: (id: ID, updates: Partial<Edge>) => Promise<Partial<Edge> | null>
   deleteNode: (id: ID) => Promise<boolean | null>
