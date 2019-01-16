@@ -38,3 +38,7 @@ export function makeRGBAText(hex: string, alpha: number = 1): string {
   const { r, g, b } = hexToRGB(hex)
   return `rgba(${r}, ${g}, ${b}, ${alpha})`
 }
+
+export function timeoutPromise(millis: number): Promise<void> {
+  return new Promise(resolve => setTimeout(() => resolve(), millis))
+}

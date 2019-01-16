@@ -1,17 +1,16 @@
 import * as React from 'react'
 
-import { ID, Node } from '../types'
+import { Node } from '../types'
 
 interface NodeEditorProps {
   node: Node
   update: (node: Node) => void
-  delete: (id: ID) => void
+  delete: () => void
   cancel: () => void
 }
 
 interface NodeEditorState {
   node: Node
-  deleteConfirmation: boolean
 }
 
 export default class NodeEditor extends React.Component<
@@ -21,8 +20,7 @@ export default class NodeEditor extends React.Component<
   constructor(props: NodeEditorProps) {
     super(props)
     this.state = {
-      node: { ...this.props.node },
-      deleteConfirmation: false
+      node: { ...this.props.node }
     }
   }
 
@@ -33,21 +31,6 @@ export default class NodeEditor extends React.Component<
   private updateNodeProperties = (updates: Partial<Node>) => {
     this.setState({ node: { ...this.state.node, ...updates } })
   }
-
-  private renderDeleteConfirmation = () => (
-    <div>
-      <p>
-        Deleting this will delete this node and all of it's relationships
-        forever. Are you sure?
-      </p>
-      <button onClick={() => this.props.delete(this.state.node.id)}>
-        delete
-      </button>
-      <button onClick={() => this.setState({ deleteConfirmation: false })}>
-        nevermind
-      </button>
-    </div>
-  )
 
   private renderTable = () => (
     <div>
@@ -76,18 +59,12 @@ export default class NodeEditor extends React.Component<
           save
         </button>
         <button onClick={this.props.cancel}>cancel</button>
-        <button onClick={() => this.setState({ deleteConfirmation: true })}>
-          delete
-        </button>
+        <button onClick={this.props.delete}>delete</button>
       </div>
     </div>
   )
 
   public render() {
-    const content = this.state.deleteConfirmation
-      ? this.renderDeleteConfirmation()
-      : this.renderTable()
-
-    return <div className="nodeEditor-nodeEditor">{content}</div>
+    return <div className="nodeEditor-nodeEditor">{this.renderTable()}</div>
   }
 }

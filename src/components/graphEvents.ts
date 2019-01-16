@@ -19,17 +19,27 @@ export const userEvents = {
   selectNode: (event: any) => {
     const { nodes } = event
     if (nodes.length) {
-      selection.setActiveNode(nodes[0])
+      selection.setActiveElement(nodes[0])
     }
   },
   selectEdge: (event: any) => {
     const { edges } = event
     if (edges.length) {
-      selection.setActiveEdge(edges[0])
+      selection.setActiveElement(edges[0])
     }
   },
-  deselectEdge: () => selection.setActiveEdge(null),
-  deselectNode: () => selection.setActiveNode(null),
+  deselectEdge: () => {
+    selection.setActiveElement(null)
+  },
+  deselectNode: (event: any) => {
+    const { edges } = event
+    if (edges.length) {
+      // may still be selected...
+      selection.setActiveElement(edges[0])
+    } else {
+      selection.setActiveElement(null)
+    }
+  },
   doubleClick: (event: any) => {
     const { canvas } = event.pointer
     handleNodeCreate({ label: 'temp', x: canvas.x, y: canvas.y })

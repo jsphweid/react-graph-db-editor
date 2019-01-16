@@ -5,17 +5,19 @@ import GraphVisWrapper from './components/graph'
 import { getStores } from './stores'
 import { Edge, ID, Node, VisjsGraph } from './types'
 
-import { setActionHandlers } from './actions'
+import { deleteActiveElement, setActionHandlers } from './actions'
 import Sidebar from './components/sidebar'
 import { initKeyListeners } from './keys'
 import { NodeWithConnections } from './types/inputs'
 import * as visjsControl from './visjs-control'
 
 export interface ActionHandlers {
-  addEdge: () => Promise<Partial<Edge> | null>
+  addEdge: (edge: Edge) => Promise<Edge | null>
   addNode: () => Promise<Partial<Node> | null>
   updateNode: (id: ID, updates: Partial<Node>) => Promise<Partial<Node> | null>
+  updateEdge: (id: ID, updates: Partial<Edge>) => Promise<Partial<Edge> | null>
   deleteNode: (id: ID) => Promise<boolean | null>
+  deleteEdge: (id: ID) => Promise<boolean | null>
 }
 
 export interface AppProps {
@@ -39,9 +41,9 @@ const App = observer(
       initKeyListeners({
         e: () => visjsControl.toggleEditConnection(),
         c: () => visjsControl.toggleCreateEdge(),
-        Escape: () => visjsControl.cancelEverything()
-        // Delete: () => something.delete(),
-        // Backspace: () => something.delete()
+        Escape: () => visjsControl.cancelEverything(),
+        Delete: deleteActiveElement,
+        Backspace: deleteActiveElement
       })
     }
 

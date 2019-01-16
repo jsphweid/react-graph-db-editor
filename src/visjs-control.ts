@@ -17,15 +17,13 @@ export const deselectAll = (): void => {
 }
 
 export const selectNode = (id?: string): void => {
-  // deselectAll()
   network.selectNodes(id ? [id] : [])
-  getStores().selection.setActiveNode(id || null)
+  getStores().selection.setActiveElement(id || null)
 }
 
 export const selectEdge = (id?: string): void => {
-  // deselectAll()
   network.selectEdges(id ? [id] : [])
-  getStores().selection.setActiveEdge(id || null)
+  getStores().selection.setActiveElement(id || null)
 }
 
 export const toggleEditConnection = (): void => {
@@ -43,5 +41,5 @@ export const disableEditMode = (): void => {
 export const cancelEverything = (): void => {
   disableEditMode()
   deselectAll()
-  getStores().selection.clearActiveElement()
+  getStores().selection.setActiveElement(null)
 }

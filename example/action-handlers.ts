@@ -1,24 +1,30 @@
 import { ActionHandlers } from '../src/index'
-function shortPause(): Promise<void> {
-  return new Promise(resolve => setTimeout(() => resolve(), 500))
-}
+import { timeoutPromise } from '../src/utils'
 
 // These fake handlers always give the minimal success in their return
 export const actionHandlers: ActionHandlers = {
-  addEdge: async () => {
-    await shortPause()
-    return { id: `newId-${Date.now()}` }
+  addEdge: async edge => {
+    await timeoutPromise(500)
+    return edge
   },
   addNode: async () => {
-    await shortPause()
+    await timeoutPromise(500)
     return {}
   },
   updateNode: async () => {
-    await shortPause()
+    await timeoutPromise(500)
     return {}
   },
   deleteNode: async () => {
-    await shortPause()
+    await timeoutPromise(500)
     return true
+  },
+  deleteEdge: async () => {
+    await timeoutPromise(500)
+    return true
+  },
+  updateEdge: async (_, updates) => {
+    await timeoutPromise(500)
+    return updates
   }
 }
