@@ -43,5 +43,5 @@ export function timeoutPromise(millis: number): Promise<void> {
   return new Promise(resolve => setTimeout(() => resolve(), millis))
 }
 
-export const isStringOrNumber = (item: any): boolean =>
+export const isStringOrNumber = (item: any): item is string | number =>
   typeof item === 'string' || typeof item === 'number'
