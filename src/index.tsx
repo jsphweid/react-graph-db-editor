@@ -3,21 +3,20 @@ import * as React from 'react'
 import { observer } from 'mobx-react'
 import GraphVisWrapper from './components/graph'
 import { getStores } from './stores'
-import { Edge, ID, Node, VisjsGraph } from './types'
+import { ActionHandlerTypes, NodeWithConnections, VisjsGraph } from './types'
 
 import { deleteActiveElement, setActionHandlers } from './actions'
 import Sidebar from './components/sidebar'
 import { initKeyListeners } from './keys'
-import { NodeWithConnections } from './types/inputs'
 import * as visjsControl from './visjs-control'
 
 export interface ActionHandlers {
-  addEdge: (edge: Edge) => Promise<Edge | null>
-  addNode: <T = {}>() => Promise<(T & Partial<Node>) | null>
-  updateNode: (id: ID, updates: Partial<Node>) => Promise<Partial<Node> | null>
-  updateEdge: (id: ID, updates: Partial<Edge>) => Promise<Partial<Edge> | null>
-  deleteNode: (id: ID) => Promise<boolean | null>
-  deleteEdge: (id: ID) => Promise<boolean | null>
+  addEdge: ActionHandlerTypes.AddEdgeHandler
+  addNode: ActionHandlerTypes.AddNodeHandler
+  updateNode: ActionHandlerTypes.UpdateNodeHandler
+  updateEdge: ActionHandlerTypes.UpdateEdgeHandler
+  deleteNode: ActionHandlerTypes.DeleteNodeHandler
+  deleteEdge: ActionHandlerTypes.DeleteEdgeHandler
 }
 
 export interface AppProps {

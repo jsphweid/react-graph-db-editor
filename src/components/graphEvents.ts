@@ -32,9 +32,10 @@ export const userEvents = {
     selection.setActiveElement(null)
   },
   deselectNode: (event: any) => {
-    const { edges } = event
-    if (edges.length) {
-      // may still be selected...
+    const { edges, nodes } = event
+    if (nodes.length) {
+      selection.setActiveElement(nodes[0])
+    } else if (edges.length) {
       selection.setActiveElement(edges[0])
     } else {
       selection.setActiveElement(null)

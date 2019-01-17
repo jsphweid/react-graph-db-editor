@@ -1,5 +1,8 @@
-import { ID, VisjsNode } from '.'
+import { ID, Node, UserExtendedData } from '.'
 
-export interface NodeWithConnections extends VisjsNode {
+export interface Connections {
   connections: ID[]
 }
+
+export type NodeWithConnections<T extends UserExtendedData = {}> = Node<T> &
+  Connections

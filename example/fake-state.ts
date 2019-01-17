@@ -1,12 +1,19 @@
-import { VisjsGraph } from '../src/types'
 import { NodeWithConnections } from '../src/types/inputs'
+import { MyCustomAttributes } from './custom'
 
-export const stateAsGraph: VisjsGraph = {
-  nodes: [{ id: 123, label: 'hi' }, { id: 234 }],
-  edges: []
-}
-
-export const stateAsNodesWithEdges: NodeWithConnections[] = [
-  { id: 123, label: 'hi', connections: ['234'] },
-  { id: 234, connections: [] }
+export const stateAsNodesWithEdges: Array<
+  NodeWithConnections<MyCustomAttributes>
+> = [
+  {
+    id: 123,
+    label: 'hi',
+    connections: ['234'],
+    aliases: ['other name', 'another']
+  },
+  {
+    id: 234,
+    connections: [],
+    custom: 'some random attribute',
+    aliases: []
+  }
 ]

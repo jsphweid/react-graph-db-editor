@@ -1,6 +1,8 @@
 import * as React from 'react'
+import TagsInput from 'react-tagsinput'
 
-import { Node } from '../types'
+import { baseNodeKeys, Node } from '../types'
+import { isStringOrNumber } from '../utils'
 
 interface NodeEditorProps {
   node: Node
@@ -32,21 +34,66 @@ export default class NodeEditor extends React.Component<
     this.setState({ node: { ...this.state.node, ...updates } })
   }
 
+  private renderArrayEditor = (key: string): JSX.Element => {
+    const values = (this.state.node as any)[key]
+    return (
+      <tr key={key}>
+        <td>{key}</td>
+        <td>
+          <TagsInput
+            value={values}
+            onChange={v => this.updateNodeProperties({ [key]: v })}
+          />
+        </td>
+      </tr>
+    )
+  }
+
+  private renderBasicEditor = (key: string) => {
+    return (
+      <tr key={key}>
+        <td>{key}:</td>
+        <td>
+          <input
+            value={(this.state.node as any)[key]}
+            onChange={(e: any) =>
+              this.updateNodeProperties({ [key]: e.currentTarget.value })
+            }
+          />
+        </td>
+      </tr>
+    )
+  }
+
+  private renderCustomPropertiesEditors = (): Array<JSX.Element | null> => {
+    //
+    // this.state.node.
+    const customProperties = Object.keys(this.state.node).filter(
+      key => !baseNodeKeys.includes(key)
+    )
+
+    const content = customProperties.map(property => {
+      if (!isStringOrNumber(property)) return null
+
+      const value = (this.state.node as any)[property]
+      if (Array.isArray(value) && value.every(isStringOrNumber)) {
+        return this.renderArrayEditor(property)
+      } else if (isStringOrNumber(value)) {
+        return this.renderBasicEditor(property)
+      } else {
+        return null
+      }
+    })
+
+    return content
+  }
+
   private renderTable = () => (
     <div>
       <table>
         <tbody>
-          <tr>
-            <td>label:</td>
-            <td>
-              <input
-                value={this.state.node.label}
-                onChange={(e: any) =>
-                  this.updateNodeProperties({ label: e.currentTarget.value })
-                }
-              />
-            </td>
-          </tr>
+          {this.renderBasicEditor('label')}
+          {this.renderCustomPropertiesEditors()}
         </tbody>
       </table>
       <div className="nodeEditor-nodeEditor-buttons">

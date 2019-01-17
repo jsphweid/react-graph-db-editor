@@ -1,15 +1,8 @@
-import { action, computed, decorate, observable } from 'mobx'
+import { action, computed, decorate, observable, toJS } from 'mobx'
 import { defaultNodeColor } from '../constants'
-import { ID, VisjsGraph } from '../types'
-import { Edge, EdgeMap, Node, NodeMap } from '../types/graph'
+import { Edge, EdgeMap, ID, Node, NodeMap, VisjsGraph } from '../types'
 import { NodeWithConnections } from '../types/inputs'
 import { makeEdge, makeRGBAText } from '../utils'
-
-const baseNode: Node = {
-  isPending: false,
-  id: 'temp',
-  label: 'temp'
-}
 
 /*
  * Unfortunately, it seems that without using '@' decorators (I gave up trying to
@@ -48,7 +41,7 @@ export default class GraphStore {
       })
     } else {
       const { nodes, edges } = graph
-      nodes.forEach(node => (nodeMap[node.id] = { ...baseNode, ...node }))
+      nodes.forEach(node => (nodeMap[node.id] = { ...node }))
       edges
         .map(edge => makeEdge(edge.from, edge.to))
         .forEach(edge => (edgeMap[edge.id] = edge))
@@ -78,12 +71,16 @@ export default class GraphStore {
   }
   public addNode = (partialNode: Partial<Node>): ID => {
     const tempId = Date.now() // temp, use better random system
-    const node = { ...baseNode, ...partialNode, id: tempId }
+    const node = { ...partialNode, id: tempId }
     this._nodeMap[tempId] = node
     return tempId
   }
   public updateNode = (id: ID, updates: Partial<Node>): void => {
     this._nodeMap[id] = { ...this._nodeMap[id], ...updates }
+    if (updates.id && id !== updates.id) {
+      this._nodeMap[updates.id] = { ...this._nodeMap[id] }
+      this.deleteNode(id)
+    }
   }
 }
 

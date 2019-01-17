@@ -10,7 +10,6 @@ import NodeEditor from './node-editor'
 // TODO: find better type guard method than 'as any'
 const Sidebar: React.SFC = observer(() => {
   const { activeElement, setActiveElement } = getStores().selection
-
   const editor =
     activeElement && !(activeElement as any).from ? (
       <NodeEditor

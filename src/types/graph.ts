@@ -5,7 +5,23 @@ interface CanLoad {
 }
 
 export interface Edge extends VisjsEdge, CanLoad {}
-export interface Node extends VisjsNode, CanLoad {}
+export interface BaseNode extends VisjsNode, CanLoad {}
+
+export interface UserExtendedData {
+  [key: string]: string | number | string[] | number[]
+}
+
+export type Node<T extends UserExtendedData = {}> = BaseNode & T
+
+export const baseNodeKeys = [
+  'id',
+  'label',
+  'color',
+  'x',
+  'y',
+  'isPending',
+  'connections'
+]
 
 export interface NodeMap {
   [key: string]: Node

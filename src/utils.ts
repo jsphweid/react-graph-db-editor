@@ -42,3 +42,6 @@ export function makeRGBAText(hex: string, alpha: number = 1): string {
 export function timeoutPromise(millis: number): Promise<void> {
   return new Promise(resolve => setTimeout(() => resolve(), millis))
 }
+
+export const isStringOrNumber = (item: any): boolean =>
+  typeof item === 'string' || typeof item === 'number'
