@@ -66,8 +66,6 @@ export default class NodeEditor extends React.Component<
   }
 
   private renderCustomPropertiesEditors = (): Array<JSX.Element | null> => {
-    //
-    // this.state.node.
     const customProperties = Object.keys(this.state.node).filter(
       key => !baseNodeKeys.includes(key)
     )

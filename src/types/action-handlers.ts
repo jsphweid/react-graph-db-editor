@@ -6,10 +6,10 @@ export type AddNodeHandler<
   T extends UserExtendedData = {}
 > = () => Promise<Node<T> | null>
 
-export type UpdateNodeHandler = (
+export type UpdateNodeHandler<T extends UserExtendedData = {}> = (
   id: ID,
-  updates: Partial<Node>
-) => Promise<Partial<Node> | null>
+  updates: Partial<Node<T>>
+) => Promise<Partial<Node<T>> | null>
 
 export type DeleteNodeHandler = (id: ID) => Promise<boolean | null>
 
