@@ -6,7 +6,7 @@ npm install it and... To be continued
 
 #### Helpful stuff
 
-If you want to console out a mobx object, do it like so:
+If you want to console log a mobx object, do it like so:
 
 ```javascript
 import { toJS } from 'mobx'

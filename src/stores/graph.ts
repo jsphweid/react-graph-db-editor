@@ -1,4 +1,4 @@
-import { action, computed, decorate, observable, toJS } from 'mobx'
+import { action, computed, decorate, observable } from 'mobx'
 import { defaultNodeColor } from '../constants'
 import { Edge, EdgeMap, ID, Node, NodeMap, VisjsGraph } from '../types'
 import { NodeWithConnections } from '../types/inputs'
