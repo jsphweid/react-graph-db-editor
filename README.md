@@ -6,6 +6,10 @@ Pass down the initial state and implementations of what I call actionHandlers (f
 
 Look at example/ if you need help
 
+Don't forget to import css from node_modules/react-graph-db-editor/dist/index.css.
+
+React is a peer dependency and is required to be installed by your host application. This library will not install it for you.
+
 ## Develop
 
 #### Running locally
