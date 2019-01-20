@@ -7,7 +7,8 @@
   "scripts": {
     "start": "parcel ./example/index.html",
     "build": "rm -rf dist && tsc && node-sass src/index.scss -o dist/",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "build:ghpages": "parcel build example/index.html --public-url . && cp dist/index.html ./index.html"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.9",
     "parcel-bundler": "^1.11.0",
+    "parcel-plugin-inliner": "^1.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "sass": "^1.16.1",
