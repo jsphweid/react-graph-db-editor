@@ -8,6 +8,10 @@ Look at example/ if you need help
 
 ## Develop
 
+#### Running locally
+
+Simple run `npm run start` and the example will spin up
+
 #### Helpful stuff
 
 If you want to console log a mobx object, do it like so:
