@@ -8,7 +8,7 @@ export interface Edge extends VisjsEdge, CanLoad {}
 export interface BaseNode extends VisjsNode, CanLoad {}
 
 export interface UserExtendedData {
-  [key: string]: string | number | string[] | number[]
+  [key: string]: string | number | string[] | number[] | undefined
 }
 
 export type Node<T extends UserExtendedData = {}> = BaseNode & T

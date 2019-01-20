@@ -1,6 +1,6 @@
 import { ActionHandlers } from '../src/index'
 import { AddNodeHandler, UpdateNodeHandler } from '../src/types/action-handlers'
-import { timeoutPromise } from '../src/utils'
+import { makeEdge, timeoutPromise } from '../src/utils'
 import { MyCustomAttributes } from './custom'
 
 // These fake handlers always give the minimal success in their return
@@ -63,8 +63,8 @@ export const actionHandlers: ActionHandlers = {
     await timeoutPromise(500)
     return true
   },
-  deleteEdge: async id => {
-    console.log(`This is where you would delete edge with id ${id}`)
+  deleteEdge: async edge => {
+    console.log(`This is where you would delete edge with id ${edge}`)
     await timeoutPromise(500)
     return true
   }

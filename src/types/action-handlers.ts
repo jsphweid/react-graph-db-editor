@@ -15,11 +15,19 @@ export type DeleteNodeHandler = (id: ID) => Promise<boolean | null>
 
 // EDGES
 
-export type AddEdgeHandler = (edge: Edge) => Promise<Edge | null>
+export type AddEdgeHandler = (
+  edge: Edge,
+  existingConnections: Edge[]
+) => Promise<Edge | null>
 
 export type UpdateEdgeHandler = (
   id: ID,
-  updates: Partial<Edge>
-) => Promise<Partial<Edge> | null>
+  newEdge: Edge,
+  oldEdge: Edge,
+  existingConnections: Edge[]
+) => Promise<Edge | null>
 
-export type DeleteEdgeHandler = (id: ID) => Promise<boolean | null>
+export type DeleteEdgeHandler = (
+  edge: Edge,
+  existingConnections: Edge[]
+) => Promise<boolean | null>

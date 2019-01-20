@@ -1,10 +1,13 @@
 {
   "name": "react-graph-db-editor",
   "version": "1.0.0",
-  "description": "",
+  "description": "A generic graph editor that allows you to easily and intuitively edit nodes and their edges.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "parcel ./example/index.html",
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc && node-sass src/index.scss -o dist/",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -24,10 +27,12 @@
     "@types/react-tagsinput": "^3.19.3",
     "jest": "^23.6.0",
     "lerna": "^3.10.5",
+    "node-sass": "^4.11.0",
     "nodemon": "^1.18.9",
     "parcel-bundler": "^1.11.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "sass": "^1.16.1",
     "ts-jest": "^23.10.5",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.7.0",

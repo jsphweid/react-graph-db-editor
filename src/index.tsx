@@ -10,6 +10,8 @@ import Sidebar from './components/sidebar'
 import { initKeyListeners } from './keys'
 import * as visjsControl from './visjs-control'
 
+export { ActionHandlerTypes, NodeWithConnections, VisjsGraph }
+
 export interface ActionHandlers {
   addEdge: ActionHandlerTypes.AddEdgeHandler
   addNode: ActionHandlerTypes.AddNodeHandler
@@ -28,6 +30,12 @@ const App = observer(
   class App extends React.Component<AppProps, any> {
     constructor(props: AppProps) {
       super(props)
+    }
+
+    public componentWillReceiveProps(nextProps: AppProps) {
+      if (JSON.stringify(nextProps.initialState !== this.props.initialState)) {
+        getStores().graph.initData(nextProps.initialState)
+      }
     }
 
     public componentDidMount() {

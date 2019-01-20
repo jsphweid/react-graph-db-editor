@@ -94,12 +94,15 @@ export async function handleNodeDelete(id: ID): Promise<void> {
 }
 
 export async function handleEdgeCreate(from: ID, to: ID): Promise<void> {
-  const { addEdge, updateEdge, deleteEdge } = getStores().graph
+  const { addEdge, updateEdge, deleteEdge, getRelatedEdges } = getStores().graph
   const edge = makeEdge(from, to)
 
   try {
     addEdge({ ...edge, isPending: true })
-    const createEdgeResponse = await realActionHandlers.addEdge(edge)
+    const createEdgeResponse = await realActionHandlers.addEdge(
+      edge,
+      getRelatedEdges(from)
+    )
     if (createEdgeResponse) {
       updateEdge(edge.id, edge)
     } else {
@@ -111,11 +114,14 @@ export async function handleEdgeCreate(from: ID, to: ID): Promise<void> {
 }
 
 export async function handleEdgeDelete(id: ID): Promise<void> {
-  const { updateEdge, deleteEdge, getEdge } = getStores().graph
+  const { updateEdge, deleteEdge, getEdge, getRelatedEdges } = getStores().graph
   const existingEdge = getEdge(id)
   try {
     updateEdge(id, { ...existingEdge, isPending: true })
-    const response = await realActionHandlers.deleteEdge(id)
+    const response = await realActionHandlers.deleteEdge(
+      existingEdge,
+      getRelatedEdges(id)
+    )
     if (response) {
       deleteEdge(id)
     } else {
@@ -128,15 +134,20 @@ export async function handleEdgeDelete(id: ID): Promise<void> {
 
 export async function handleEdgeUpdate(
   id: ID,
-  updates: Partial<Edge>
+  updatedEdge: Edge
 ): Promise<void> {
-  const { updateEdge, getEdge } = getStores().graph
+  const { updateEdge, getEdge, getRelatedEdges } = getStores().graph
   const existingEdge = getEdge(id)
   try {
-    updateEdge(id, { ...updates, isPending: true })
-    const response = await realActionHandlers.updateEdge(id, updates)
+    updateEdge(id, { ...updatedEdge, isPending: true })
+    const response = await realActionHandlers.updateEdge(
+      id,
+      existingEdge,
+      updatedEdge,
+      getRelatedEdges(id)
+    )
     if (response) {
-      updateEdge(id, { ...updates, isPending: false })
+      updateEdge(id, { ...updatedEdge, isPending: false })
     } else {
       updateEdge(id, { ...existingEdge, isPending: false })
     }

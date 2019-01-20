@@ -10,9 +10,9 @@
   --light-text-color: #777;
 }
 
-@import './components/node-editor.css';
-@import './components/sidebar.css';
-@import './components/graph.css';
+@import './components/node-editor';
+@import './components/sidebar';
+@import './components/graph';
 
 button:disabled {
   color: var(--light-text-color);

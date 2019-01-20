@@ -4,6 +4,8 @@ import * as ReactDOM from 'react-dom'
 import { actionHandlers } from './action-handlers'
 import { stateAsNodesWithEdges } from './fake-state'
 
+import '../src/index.scss'
+
 import GraphEditor from '../src'
 
 class Example extends React.Component {

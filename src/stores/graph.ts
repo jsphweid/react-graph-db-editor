@@ -53,6 +53,9 @@ export default class GraphStore {
   public getEdge = (id: ID): Edge => {
     return this._edgeMap[id]
   }
+  public getRelatedEdges = (id: ID): Edge[] => {
+    return Object.values(this._edgeMap).filter(edge => edge.from === id)
+  }
   public addEdge = (edge: Edge): void => {
     this._edgeMap[edge.id] = edge
   }
