@@ -12,10 +12,16 @@ import { MyCustomAttributes } from './custom'
  * values will magically appear in the UI editor and updates will
  * appear in updateNode when something is saved.
  */
+
+function print(title: string, args: any[]): void {
+  console.log(`--- Calling ${title} ---`)
+  args.forEach((arg, i) => {
+    console.log(`Arg ${i + 1}:`, JSON.stringify(arg))
+  })
+}
+
 const addNode: AddNodeHandler<MyCustomAttributes> = async () => {
-  console.log(
-    'This is where you would add a node in your database and a valid node to confirm its place on the graph'
-  )
+  print('addNode', [])
   await timeoutPromise(500)
   return { aliases: ['alias 1'], id: Date.now() }
 }
@@ -24,13 +30,7 @@ const updateNode: UpdateNodeHandler<MyCustomAttributes> = async (
   id,
   updates
 ) => {
-  console.log(
-    `This is where you would update node: ${id} with updates: ${JSON.stringify(
-      updates,
-      null,
-      2
-    )}`
-  )
+  print('updateNode', [id, updates])
   await timeoutPromise(500)
   return updates
 }
@@ -38,33 +38,23 @@ const updateNode: UpdateNodeHandler<MyCustomAttributes> = async (
 export const actionHandlers: ActionHandlers = {
   addNode,
   updateNode,
-  addEdge: async edge => {
-    console.log(
-      `This is where you would add an edge from node id ${
-        edge.from
-      } to node id ${edge.to}`
-    )
+  addEdge: async (edge, existingConnections) => {
+    print('addEdge', [edge, existingConnections])
     await timeoutPromise(500)
     return edge
   },
-  updateEdge: async (id, updates) => {
-    console.log(
-      `This is where you would update edge id ${id} with updates: ${JSON.stringify(
-        updates,
-        null,
-        2
-      )}`
-    )
+  updateEdge: async (id, newEdge, oldEdge, existingConnections) => {
+    print('updateEdge', [id, newEdge, oldEdge, existingConnections])
     await timeoutPromise(500)
-    return updates
+    return newEdge
   },
   deleteNode: async id => {
-    console.log(`This is where you would delete node with id ${id}`)
+    print('deleteNode', [id])
     await timeoutPromise(500)
     return true
   },
-  deleteEdge: async edge => {
-    console.log(`This is where you would delete edge with id ${edge}`)
+  deleteEdge: async (edge, existingConnections) => {
+    print('deleteEdge', [edge, existingConnections])
     await timeoutPromise(500)
     return true
   }
