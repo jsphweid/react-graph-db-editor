@@ -1,6 +1,10 @@
 ## To Use
 
-npm install it and... To be continued
+`npm install --save react-graph-db-editor`
+
+Pass down the initial state and implementations of what I call actionHandlers (functions that react to graph events -- gives you an opportunity to call your DBs/APIs to sync the update you made on the graph editor).
+
+Look at example/ if you need help
 
 ## Develop
 
